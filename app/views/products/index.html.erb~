@@ -1,0 +1,47 @@
+<h1>Listing products</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Price</th>
+    <th>Image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.id %></td>
+    <td><%= product.name %></td>
+    <td><%= product.content %></td>
+    <td><%= product.price %></td>
+    <td><%= image_tag product.avatar.url(:thumb) %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate @products %>
+
+<br />
+
+<%= link_to 'New Product', new_product_path %>
+
+<table border="1">
+  <tr>
+    <th>Company</th>
+    <th>Address</th>
+  </tr>
+
+  <tr>
+    <td>Apple, Inc.</td>
+    <td>1 Infinite Loop Cupertino, CA 95014</td>
+  </tr>
+</table>
+
+

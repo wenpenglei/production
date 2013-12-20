@@ -1,0 +1,14 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+<p style="color:green"><%= flash[:laobo] %></p>
+
+<%= link_to "products#index", products_url %>
+<hr/>
+<%= link_to "users#new", "/users/new" %>
+
+
+<hr/>
+<%= link_to "login", login_url %>
+<hr/>
+<%= button_to "logout", logout_url, :method => "delete" %>

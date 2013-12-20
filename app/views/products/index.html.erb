@@ -1,0 +1,72 @@
+<h1>Listing products</h1>
+<%= form_for @search do |f| %>
+  <p>
+  <%= f.label :name_contains %>
+  <%= f.text_field :name_contains %>
+  </p>
+  <p>
+  <%= f.label :product_price, "Price ranges from" %>
+  <%= f.text_field :price_greater_than, :size => 8 %>
+  <%= f.label :product_price, "to" %>
+  <%= f.text_field :price_less_than , :size => 8 %>
+  </p>
+
+
+ <p>
+  <%= f.label :produce_id, "id from" %>
+  <%= f.text_field :id_greater_than, :size => 8 %>
+  <%= f.label :product_id, "to" %>
+  <%= f.text_field :id_less_than , :size => 8 %>
+  </p>
+
+
+
+  
+  <p>
+  日期选择<%= select_date() %><br/>
+  日期选择<%= select_datetime() %><br/>
+
+  <p class="button"><%= f.submit "Search" %></p>
+<% end %>
+
+<%= paginate @products %> 总共<%= @products.total_count %> 条记录
+<p>
+Sort by:
+<%= sort_link @search, :name %> |
+<%= sort_link @search, :price %> 
+</p>
+
+
+
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Price</th>
+    <th>Image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.id %></td>
+    <td><%= product.name %></td>
+    <td><%= product.content %></td>
+    <td><%= product.price %></td>
+    <td><%= image_tag product.avatar.url(:thumb) %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @products %>
+
+<br />
+
+<%= link_to 'New Product', new_product_path %>
+
